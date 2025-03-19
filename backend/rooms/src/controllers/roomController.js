@@ -15,7 +15,7 @@ const createRoom = async (req, res) => {
   const room = new Room(req.body);
 
   try {
-    const newRoom = await room.save();
+    const newRoom = await room.save();//Save the promise given back
     res.status(201).json(newRoom);
   } catch (err) {
     res.status(400).json("Error while creating the room: "+{ message: err.message });
@@ -27,7 +27,7 @@ const deleteRoom = async (req, res) => {
   const roomId = req.params.id;
   try {
     await Room.findByIdAndDelete(roomId);
-    res.status(201).json({message: "Deleted succesfully"});
+    res.status(200).json({message: "Deleted succesfully"});
   } catch (err) {
     res.status(400).json("Error "+err);
   }
